@@ -30,6 +30,10 @@ jobs:
         with:
           node-version: 16.x
           cache: 'npm'
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
       - name: Set package version and name
         uses: brown-ccv/gh-actions/get-package-info@main
         id: package_info

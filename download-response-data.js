@@ -93,7 +93,7 @@ try {
   db = firebase
     .initializeApp({
       credential: firebase.credential.cert(
-        require('/Users/lowen/Desktop/avoidance-learning-soma-firebase-adminsdk-xwdid-7bd7cdf115.json')
+        require('/Users/lowen/Desktop/avoidance-learning-depression-firebase-adminsdk-v6s2t-4715212f45.json')
       ),
     })
     .firestore();
