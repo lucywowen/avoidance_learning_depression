@@ -19,7 +19,7 @@ jobs:
     # Run build script for [home/clinic] with video [on/off] in [windows/macOS/ubuntu]
     strategy:
       matrix:
-        setting: [home]
+        setting: [home, clinic]
         video: [on, off]
         os: [ubuntu-latest, macOS-latest, windows-latest]
         exclude: 
@@ -50,6 +50,10 @@ jobs:
         with:
           node-version: 16.x
           cache: 'npm'
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
       # Run npm install, build, and test
       - name: npm install
