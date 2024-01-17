@@ -148,9 +148,8 @@ class myinstructionsPlugin {
 
     const show_current_page = () => {
       // Update instructions text.
-      display_element.querySelector(
-        '.instructions'
-      ).innerHTML = `<p>${trial.pages[current_page]}</p>`;
+      display_element.querySelector('.instructions').innerHTML =
+        `<p>${trial.pages[current_page]}</p>`;
 
       // Update prev button
 
