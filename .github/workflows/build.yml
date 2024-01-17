@@ -19,7 +19,7 @@ jobs:
     # Run build script for [home/clinic] with video [on/off] in [windows/macOS/ubuntu]
     strategy:
       matrix:
-        setting: [home, clinic]
+        setting: [home]
         video: [on, off]
         os: [ubuntu-latest, macOS-latest, windows-latest]
         exclude: 
