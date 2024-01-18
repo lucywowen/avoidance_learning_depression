@@ -7,6 +7,8 @@ import jsPsychMyInstructions from '../js/instructions';
 import jsPsychPractice from '../js/practice';
 import jsPsychHtmlSliderResponse from '@jspsych/plugin-html-slider-response';
 import jsPsychSurveyMultiChoice from '@jspsych/plugin-survey-multi-choice';
+import jsPsychSurveyMultiSelect from '@jspsych/plugin-survey-multi-select';
+import jsPsychSurveyText from '@jspsych/plugin-survey-text';
 import jsPsychCallFunction from '@jspsych/plugin-call-function';
 import jsPsychImageKeyboardResponse from '@jspsych/plugin-image-keyboard-response';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
@@ -118,6 +120,75 @@ function buildTimeline(jsPsych) {
     ],
   };
 
+  var depression_01 = {
+    type: jsPsychSurveyMultiChoice,
+    preamble:
+      '<p style="font-size:' +
+      font_size +
+      'px;"> <br> Over the last 2 weeks, how often have you been bothered by any of the following problems? <br> <br> Scroll down to finish the survey',
+    questions: [
+      {
+        prompt: 'Little interest or pleasure in doing things',
+        name: 'PHQ8_1',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+      {
+        prompt: 'Feeling down, depressed, or hopeless',
+        name: 'PHQ8_2',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+      {
+        prompt: 'Trouble falling or staying asleep, or sleeping too much',
+        name: 'PHQ8_3',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+      {
+        prompt: 'Feeling tired or having little energy',
+        name: 'PHQ8_4',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+      {
+        prompt: 'Poor appetite or overeating',
+        name: 'PHQ8_5',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+      {
+        prompt:
+          'Feeling bad about yourself_or that you are a failure or have let yourself or your family down',
+        name: 'PHQ8_6',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+      {
+        prompt:
+          'Trouble concentrating on things, such as reading the newspaper or watching television',
+        name: 'PHQ8_7',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+      {
+        prompt:
+          'Moving or speaking so slowly that other people could have noticed. Or the opposite - being so figety or restless that you have been moving around a lot more than usual',
+        name: 'PHQ8_8',
+        options: ['Not at all', 'Several days', 'More than half the days', 'Nearly every day'],
+        required: false,
+        horizontal: false,
+      },
+    ],
+  };
+
   var pain_01 = {
     type: jsPsychHtmlSliderResponse,
     labels: [
@@ -174,6 +245,86 @@ function buildTimeline(jsPsych) {
         required: true,
       },
     ],
+  };
+
+  var pain_05 = {
+    type: jsPsychSurveyMultiSelect,
+    preamble:
+      '<p style="font-size:' +
+      font_size +
+      'px;"> <br> Select all that apply <br> <br> Scroll down to finish the survey',
+    questions: [
+      {
+        prompt: 'Have you been diagnosed with any  of the following',
+        name: 'pain_type_survey',
+        options: [
+          '<b>Chronic back or neck pain</b>',
+          '-- Scoliosis',
+          '-- Stenosis',
+          '-- Radiculopathy',
+          '-- Degenerative Disc Disease',
+          '-- Herniation',
+          '-- Osteoarthritis',
+          '-- Failed Back Surgery Syndrome (Post-laminectomy pain syndrome)',
+          '-- Unsure',
+          '-- Other (describe on next page)',
+          '<b>Chronic musculoskeletal pain</b>',
+          '<b>Fibromyalgia</b>',
+          '<b>Osteoarthritis</b>',
+          '-- Hip',
+          '-- Knee',
+          '-- Shoulder',
+          '-- Ankle',
+          '-- Foot',
+          '-- Hand',
+          '-- Wrist',
+          '-- Back',
+          '-- Neck',
+          '-- Other (describe on next page)',
+          '<b>Rheumatoid arthritis</b>',
+          '<b>Chronic burn pain</b>',
+          '<b>Acute burn pain</b>',
+          '<b>Post-stroke pain</b>',
+          '<b>Trigeminal neuralgia</b>',
+          '<b>Post-herpetic neuralgia</b>',
+          '<b>Diabetic neuropathy</b>',
+          '<b>HIV neuropathy</b>',
+          '<b>Polyneuropathy</b>',
+          '<b>Temporomandibular joint disorder (TMJ)</b>',
+          '<b>Shingles</b>',
+          '<b>Headache</b>',
+          '<b>Migraine</b>',
+          '<b>Complex Regional Pain Syndrome (CRPS)</b>',
+          '<b>Multiple Sclerosis</b>',
+          '<b>Lupus</b>',
+          '<b>Chronic Lyme Disease</b>',
+          '<b>Neuropathic pain</b>',
+          '<b>Spinal cord injury</b>',
+          '<b>Traumatic brain injury</b>',
+          '<b>Phantom limb syndrome/amputee pain</b>',
+          '<b>Chronic pelvic pain</b>',
+          '<b>Sickle cell disease/crisis</b>',
+          '<b>Postoperative pain</b>',
+          '<b>Traumatic injury</b>',
+          '<b>Rheumatoid/osteoarthritis</b>',
+          '<b>Gout</b>',
+          '<b>Sports/exercise injuries</b>',
+          '<b>Mechanical back pain</b>',
+          '<b>Irritable bowel syndrome (IBS)</b>',
+          '<b>Crohn’s Disease</b>',
+          '<b>Ulcerative Colitis</b>',
+          '<b>Ehlers Danlos</b>',
+          'Other (describe on next page)',
+        ],
+        required: false,
+        horizontal: false,
+      },
+    ],
+  };
+
+  var pain_06 = {
+    type: jsPsychSurveyText,
+    questions: [{ prompt: 'If you answered "Other" on the previous page, please elaborate here:' }],
   };
 
   var instructions_01 = {
@@ -257,10 +408,13 @@ function buildTimeline(jsPsych) {
       timeline: [
         instructions_000,
         instructions_00,
+        depression_01,
         pain_01,
         pain_02,
         pain_03,
         pain_04,
+        pain_05,
+        pain_06,
         instructions_01,
         practice_block_01,
         instructions_02,
