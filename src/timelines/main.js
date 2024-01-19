@@ -290,7 +290,7 @@ function buildTimeline(jsPsych) {
           '<b>Diabetic neuropathy</b>',
           '<b>HIV neuropathy</b>',
           '<b>Polyneuropathy</b>',
-          '<b>Temporomandibular joint disorder (TMJ)</b>',
+          '<b>Temporomandibular joint disorder (TMJ) </b>',
           '<b>Shingles</b>',
           '<b>Headache</b>',
           '<b>Migraine</b>',
