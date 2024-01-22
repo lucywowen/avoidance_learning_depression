@@ -311,7 +311,7 @@ function buildTimeline(jsPsych) {
           '<b>Sports/exercise injuries</b>',
           '<b>Mechanical back pain</b>',
           '<b>Irritable bowel syndrome (IBS)</b>',
-          '<b>Crohn’s Disease </b>',
+          '<b>Crohn’s Disease</b>',
           '<b>Ulcerative Colitis</b>',
           '<b>Ehlers Danlos</b>',
           'Other (describe on next page)',
