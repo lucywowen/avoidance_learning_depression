@@ -179,8 +179,7 @@ function buildTimeline(jsPsych) {
 
   const isNil = (x) => typeof x === 'undefined' || x === null;
 
-  const consentErrorMessage =
-    'You must agree to the consent declaration before you may begin.';
+  const consentErrorMessage = 'You must agree to the consent declaration before you may begin.';
 
   const checkConsent = () => {
     if (document?.querySelector('#consent')?.checked) {
@@ -194,10 +193,10 @@ function buildTimeline(jsPsych) {
   };
 
   const idTimelineNode = {
-    'check_fn': checkConsent,
-    'cont_btn': 'begin',
-    'html': consentFormHtml,
-    'type': jspsychPluginHtml,
+    check_fn: checkConsent,
+    cont_btn: 'begin',
+    html: consentFormHtml,
+    type: jspsychPluginHtml,
   };
 
   var instructions_000 = {
@@ -941,7 +940,7 @@ function buildTimeline(jsPsych) {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `<p>You've finished the last task. Thanks for participating!</p>
       <p><a href="https://app.prolific.co/submissions/complete?cc=CK5KGDJA">Click here to return to Prolific and complete the study</a>.</p>`,
-    choices: "NO_KEYS"
+    choices: 'NO_KEYS',
   };
 
   const fullscreen = {
