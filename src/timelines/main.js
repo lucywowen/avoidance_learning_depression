@@ -12,6 +12,7 @@ import jsPsychSurveyText from '@jspsych/plugin-survey-text';
 import jsPsychCallFunction from '@jspsych/plugin-call-function';
 import jsPsychImageKeyboardResponse from '@jspsych/plugin-image-keyboard-response';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
+import jspsychPluginHtml from '@adp-psych/jspsych-plugin-html';
 import 'jspsych/css/jspsych.css';
 import '../css/robots-css.min.css';
 import { images } from '../lib/utils';
@@ -98,6 +99,105 @@ function buildTimeline(jsPsych) {
   //---------------------------------------//
   // Define learning phase instructions.
   //---------------------------------------//
+
+  const consentFormHtml = `
+    <article id="pcf" class="instructions">
+      <h1>Participant Consent Form</h1>
+      <p>
+      <p>                                  </p>
+      <pCONSENT FOR RESEARCH PARTICIPATION</p>
+      <p><strong>Assessing symptom and mood dynamics in pain using a
+      smartphone application</strong></p>
+      </blockquote>
+      <p><mark>Online Task Sub-study: Perceptual Learning Computer Game Pilot
+      Study</mark></p>
+      <p>V4, 1/25/2023</p>
+      <blockquote>
+      <p><You are invited to take part in a Brown University research
+      study. Your participation is voluntary.</p>
+      <ul>
+      <li><p style="text-align: left;">RESEARCHER:Frederike Petzschner, Ph.D.</p></li>
+      <li><p style="text-align: left;">PURPOSE:This study is about assessing changes in how you learn
+      and perceive different stimuli during an online computer game between
+      adults with and without different common physical or psychological
+      symptoms such as pain, depression, and anxiety. You are being asked to
+      participate because you are an adult over the age of 18 who is a
+      registered Prolific user and you have indicated that you either
+      experience no pain or psychological symptoms, do experience pain of
+      acute duration (for 3 months or less) or chronic duration (greater than
+      3 months), and/or that you experience some common psychological symptoms
+      like anxiety or depression.</p></li>
+      <li><p style="text-align: left;">PROCEDURES: You will be asked to complete a computer game online
+      via Prolific.</p></li>
+      <li><p style="text-align: left;">TIME INVOLVED:The study will take approximately 1-1.5 hours of
+      time.</p></li>
+      <li><p style="text-align: left;">COMPENSATION:You will be paid $8 per hour for participation in
+      this study via your existing registered Prolific account. You may
+      receive a monetary bonus of up to $4 based on your performance during
+      the game. Payments will be received from Prolific in accordance with
+      terms and conditions agreed to through this platform.</p></li>
+      <li><p style="text-align: left;">RISKS: You may feel bored or become tired during some parts of
+      the computer game but other than that there are no real risks to you.
+      You will be able to take breaks at instructed time throughout the task
+      to help minimize this. All of your data will be stored without any
+      personally identifying information on Brown University approved secure
+      servers.</p></li>
+      <li><p style="text-align: left;">BENEFITS:There are no direct benefits to you if you agree to be
+      in this research study.</p></li>
+      <li><p style="text-align: left;">CONFIDENTIALITY:To maintain confidentiality, we will assign all
+      your data a numerical code. Your responses will not be connected to your
+      identity. Please note that complete confidentiality can never be
+      guaranteed when information is transmitted over the internet.</p></li>
+      <li><p style="text-align: left;">VOLUNTARY: You do not have to be in this study if you do not want
+      to be. Even if you decide to be in this study, you can change your mind
+      and stop at any time.</p></li>
+      <li><p style="text-align: left;">CONTACT INFORMATION: If you have any questions about your
+      participation in this study, you can ask at any time, call our office at
+      Brown University at (401)863-6272 or email <a
+      href="mailto:soma@brown.edu">soma@brown.edu.</a></p></li>
+      <li><p style="text-align: left;">YOUR RIGHTS: If you have questions about your rights as a
+      research participant, you can contact Brown University’s Human Research
+      Protection Program at 401-863-3050 or email them at <a
+      href="mailto:IRB@Brown.edu">IRB@Brown.edu.</a></p></li>
+      <li><p style="text-align: left;">CONSENT TO PARTICIPATE:Clicking the link below confirms that you
+      have read and understood the information in this document, are 18 years
+      old or older and that you agree to volunteer as a research participant
+      for this study.</p></li>
+      </p>
+      <form id="consent-form">
+        <label>
+          <input type="checkbox" id="consent" />
+          I want to participate.
+        </label>
+        <p id="consent-error" class="error"></p>
+        <button type="button" class="jspsych-btn" id="begin">
+          Begin Experiment
+        </button>
+      </form>
+    </article>
+  `;
+
+  const isNil = (x) => typeof x === 'undefined' || x === null;
+
+  const consentErrorMessage = 'You must agree to the consent declaration before you may begin.';
+
+  const checkConsent = () => {
+    if (document?.querySelector('#consent')?.checked) {
+      return true;
+    }
+    const consentError = document?.querySelector('#consent-error');
+    if (!isNil(consentError)) {
+      consentError.textContent = consentErrorMessage;
+    }
+    return false;
+  };
+
+  const idTimelineNode = {
+    check_fn: checkConsent,
+    cont_btn: 'begin',
+    html: consentFormHtml,
+    type: jspsychPluginHtml,
+  };
 
   var instructions_000 = {
     type: jsPsychImageKeyboardResponse,
@@ -406,6 +506,7 @@ function buildTimeline(jsPsych) {
   } else {
     instructions = {
       timeline: [
+        idTimelineNode,
         instructions_000,
         instructions_00,
         depression_01,
@@ -837,11 +938,8 @@ function buildTimeline(jsPsych) {
 
   var final_trial = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: function () {
-      const participant_id = jsPsych.data.getLastTrialData().trials[0].participant_id;
-      const study_id = jsPsych.data.getLastTrialData().trials[0].study_id;
-      return `<p><a href="https://brown.co1.qualtrics.com/jfe/form/SV_eVxacnZXKQV5QY6?APPID=${participant_id}&STUDYID=${study_id}">Click here to move to Qualtrics and complete the study</a>.</p>`;
-    },
+    stimulus: `<p>You've finished the last task. Thanks for participating!</p>
+      <p><a href="https://app.prolific.co/submissions/complete?cc=CK5KGDJA">Click here to return to Prolific and complete the study</a>.</p>`,
     choices: 'NO_KEYS',
   };
 
