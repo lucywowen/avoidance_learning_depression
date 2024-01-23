@@ -12,6 +12,7 @@ import jsPsychSurveyText from '@jspsych/plugin-survey-text';
 import jsPsychCallFunction from '@jspsych/plugin-call-function';
 import jsPsychImageKeyboardResponse from '@jspsych/plugin-image-keyboard-response';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
+import jspsychPluginHtml from '@adp-psych/jspsych-plugin-html';
 import 'jspsych/css/jspsych.css';
 import '../css/robots-css.min.css';
 import { images } from '../lib/utils';
