@@ -582,10 +582,10 @@ function buildTimeline(jsPsych) {
       return [
         '<p style="font-size:' +
           font_size +
-          'px;">That is the end of the selection phase. Great job!',
+          'px;">That is the end of the selection phase. Great job! Please press the <b>j</b> key to continue.',
         '<p style="font-size:' +
           font_size +
-          'px;">Take a break for a few moments and<br>click next when you are ready to continue.',
+          'px;">Take a break for a few moments and<br>click the <b>j</b> key when you are ready to continue.',
         '<p style="font-size:' +
           font_size +
           'px;">Great! You are now going to <b>test</b> a new set of knights.<br>The task is the same as before.',
